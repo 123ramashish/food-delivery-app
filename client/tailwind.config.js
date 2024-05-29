@@ -8,7 +8,11 @@ export default {
     flowbite.content(),
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        sm: "0 5px 30px -15px #fecaca",
+      },
+    },
   },
   plugins: [flowbite.plugin()],
 };
