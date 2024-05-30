@@ -4,7 +4,7 @@ import { FaRegUser, FaShoppingCart } from "react-icons/fa";
 export default function Header() {
   return (
     <>
-      <Navbar fluid rounded className="shadow-sm">
+      <Navbar fluid rounded className="shadow-sm ">
         <Navbar.Brand
           as={Link}
           href="/"
