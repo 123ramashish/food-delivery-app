@@ -5,6 +5,7 @@ import ItemCard from "../components/ItemCard";
 import ServePage from "../components/ServePage";
 import DeliveryPage from "../components/DeliveryPage";
 import PizzaPage from "../components/PizzaPage";
+import PopularFoods from "../components/PopularFoods";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <OrderHome />
       <ItemCard />
       <ServePage />
+      <PopularFoods />
       <DeliveryPage />
       <PizzaPage />
     </>
