@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./components/Cart";
-import Header from "./components/Header";
-
+import Header from "./pages/Header";
+import { FooterPage } from "./pages/FooterPage";
 function App() {
   return (
     <>
@@ -12,6 +12,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
+        <FooterPage />
       </BrowserRouter>
     </>
   );
