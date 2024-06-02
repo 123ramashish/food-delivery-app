@@ -17,7 +17,12 @@ export default function Cart() {
   }, [location.pathname]);
 
   return (
-    <Drawer open={isOpen} onClose={handleClose} position="right">
+    <Drawer
+      open={isOpen}
+      onClose={handleClose}
+      position="right"
+      className="z-50"
+    >
       <Drawer.Header title="Cart" />
       <Drawer.Items></Drawer.Items>
     </Drawer>

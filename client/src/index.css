@@ -2,7 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .navlink:hover{
-color: red;
-} */
+
+.navbarlink:hover{
+    color: red !important;
+}
+.navbarlink:active{
+    color: red !important;
+}
+input:focus{
+    outline: 0;
+}
 
