@@ -22,7 +22,10 @@ export default function OrderHome() {
         </p>
         <div className="flex flex-wrap gap-4 mt-3">
           <Button className=" h-9 bg-red-500 text-sm ">Order now&gt;</Button>
-          <Button className="h-9 border-red-500 text-sm outline outline-red-500 bg-white text-red-500">
+          <Button
+            href="/food"
+            className="h-9 border-red-500 text-sm outline outline-red-500 bg-white text-red-500"
+          >
             See all foods
           </Button>
         </div>

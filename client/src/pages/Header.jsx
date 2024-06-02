@@ -34,9 +34,7 @@ export default function Header() {
           <Navbar.Link active href="/">
             Home
           </Navbar.Link>
-          <Navbar.Link as={Link} href="/food">
-            Food
-          </Navbar.Link>
+          <Navbar.Link href="/food">Food</Navbar.Link>
           <Navbar.Link href="/cart">Cart</Navbar.Link>
           <Navbar.Link href="/contact">Contact</Navbar.Link>
         </Navbar.Collapse>
