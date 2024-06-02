@@ -21,10 +21,10 @@ export default function Header() {
         </Navbar.Brand>
 
         <div className=" inline-flex gap-4 text-sm items-center ml-2 md:order-2 ">
-          <Link href="/cart">
+          <Link to={"/cart"}>
             <FaShoppingCart />
           </Link>
-          <Link href="/login">
+          <Link to={"/signin"}>
             <FaRegUser />
           </Link>
           <Navbar.Toggle />
