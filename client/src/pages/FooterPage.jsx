@@ -11,7 +11,7 @@ import { FaLocationArrow } from "react-icons/fa";
 
 export function FooterPage() {
   return (
-    <Footer className="px-24  bg-red-200 ">
+    <Footer className="px-24  bg-red-200 h-auto">
       <div className="w-full ">
         <div className="grid w-full grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4  dark:text-white">
           <div className="flex flex-col  gap-3 ">
@@ -70,14 +70,31 @@ export function FooterPage() {
             year={new Date().getFullYear()}
           />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-            <Footer.Icon href="#" icon={BsFacebook} />
-            <Footer.Icon href="#" icon={BsInstagram} />
-            <Footer.Icon href="#" icon={BsTwitter} />
+            <Footer.Icon
+              href="#"
+              icon={BsFacebook}
+              className="hover:text-[#16a5fb]"
+            />
+            <Footer.Icon
+              href="#"
+              icon={BsInstagram}
+              className="hover:text-[#dd2b73]"
+            />
+            <Footer.Icon
+              href="#"
+              icon={BsTwitter}
+              className="hover:text-[#1da1f2]"
+            />
             <Footer.Icon
               href="https://github.com/123ramashish"
               icon={BsGithub}
+              className="hover:text-black"
             />
-            <Footer.Icon href="#" icon={BsDribbble} />
+            <Footer.Icon
+              href="#"
+              icon={BsDribbble}
+              className="hover:text-[#ea4c89]"
+            />
           </div>
         </div>
       </div>
