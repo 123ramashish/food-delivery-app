@@ -38,6 +38,10 @@ export default function SignUp() {
         <Button type="submit" className="bg-red-600">
           Submit
         </Button>
+        <div className="flex items-center gap-2">
+          <Checkbox id="remember" />
+          <Label htmlFor="remember">Signup as Requiter</Label>
+        </div>
         <p className="text-xs font-thin">
           Do you have accound?
           <Link to={"/signin"} className="text-blue-600 underline">
