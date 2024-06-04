@@ -1,5 +1,6 @@
 import passwordHash from "password-hash";
 import User from "../DataBase/Schema/userschema.js";
+import { CustomError } from "../middlewares/custom.error.js";
 export default class userController {
   async userSignup(req, res, next) {
     try {
@@ -15,7 +16,7 @@ export default class userController {
       return res.status(200).send("Signup successful!");
     } catch (err) {
       console.log("Error:", err.message);
-      return res.send(err.message);
+      next(new CustomError(err.message, 500));
     }
   }
   async userSignin(req, res) {
