@@ -1,6 +1,7 @@
 import { connectDB } from "./DataBase/database.js";
 import express from "express";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
 import userRouter from "./routers/user.router.js";
 dotenv.config();
 const app = express();
@@ -8,7 +9,9 @@ const app = express();
 // app.use(cors());
 
 // middleware
-// JSON formatting
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 app.use(express.json()); // PARSER JSON
 app.use("/api/user", userRouter);
 
