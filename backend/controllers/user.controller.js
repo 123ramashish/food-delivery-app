@@ -12,13 +12,20 @@ export default class userController {
         admin: admin,
       });
       await newUser.save();
-      res.status(200).send("Signup successful!");
+      return res.status(200).send("Signup successful!");
     } catch (err) {
       console.log("Error:", err.message);
-      res.send(err.message);
+      return res.send(err.message);
     }
   }
-  userSignin(req, res) {
-    res.send("Signin api is working!");
+  async userSignin(req, res) {
+    try {
+      const { email, password } = req.body;
+
+      res.send("Signin api is working!");
+    } catch (err) {
+      console.log("Error:", err.message);
+      return res.status(404).send(err.message);
+    }
   }
 }
