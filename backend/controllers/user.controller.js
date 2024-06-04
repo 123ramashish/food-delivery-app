@@ -19,14 +19,25 @@ export default class userController {
       next(new CustomError(err.message, 500));
     }
   }
-  async userSignin(req, res) {
+  async userSignin(req, res, next) {
     try {
       const { email, password } = req.body;
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new CustomError("User not exist", 404);
+      }
+      const isPasswordValid = passwordHash.verify(
+        String(password),
+        user.password
+      );
 
-      res.send("Signin api is working!");
+      if (!isPasswordValid) {
+        throw new CustomError("Invalid password", 401);
+      }
+      return res.status(200).json({ user });
     } catch (err) {
       console.log("Error:", err.message);
-      return res.status(404).send(err.message);
+      next(new CustomError(err.message, 500));
     }
   }
 }
