@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import userRouter from "./routers/user.router.js";
 import { CustomError } from "./middlewares/custom.error.js";
-import jwt from "jsonwebtoken";
+
 dotenv.config();
 const app = express();
 // Applying Cors

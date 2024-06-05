@@ -1,6 +1,7 @@
 import passwordHash from "password-hash";
 import User from "../DataBase/Schema/userschema.js";
 import { CustomError } from "../middlewares/custom.error.js";
+import jwt from "jsonwebtoken";
 export default class userController {
   async userSignup(req, res, next) {
     try {
@@ -34,7 +35,13 @@ export default class userController {
       if (!isPasswordValid) {
         throw new CustomError("Invalid password", 401);
       }
-      return res.status(200).json({ user });
+
+      const token = jwt.sign(
+        { email: user.email, admin: user.admin },
+        process.env.JWT_KEY,
+        { expiresIn: "7d" }
+      );
+      return res.status(200).json({ user: user, token: token });
     } catch (err) {
       console.log("Error:", err.message);
       next(new CustomError(err.message, 500));
