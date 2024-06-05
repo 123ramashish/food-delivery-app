@@ -1,14 +1,18 @@
-import { Navbar, NavbarCollapse } from "flowbite-react";
+import {
+  Avatar,
+  Button,
+  Navbar,
+  NavbarCollapse,
+  Popover,
+} from "flowbite-react";
 import { Link } from "react-router-dom";
 import { FaRegUser, FaShoppingCart } from "react-icons/fa";
+import Profile from "../components/Profile";
 export default function Header() {
+  const content = <Profile />;
   return (
     <>
-      <Navbar
-        fluid
-        rounded
-        className="shadow-sm sticky top-0 w-full overflow-y-hidden z-50"
-      >
+      <Navbar fluid rounded className="shadow-sm sticky top-0 w-full z-50">
         <Navbar.Brand
           as={Link}
           href="/"
@@ -26,11 +30,14 @@ export default function Header() {
 
         <div className=" inline-flex gap-4 text-sm items-center ml-2 md:order-2 ">
           <Link to={"/cart"}>
-            <FaShoppingCart className="hover:text-red-500" />
+            <FaShoppingCart className=" text-2xl text-gray-500" />
           </Link>
-          <Link to={"/signin"}>
-            <FaRegUser className="hover:text-red-500" />
-          </Link>
+          <Popover content={content} placement="bottom" trigger="hover">
+            <button>
+              <Avatar rounded />
+            </button>
+          </Popover>
+
           <Navbar.Toggle />
         </div>
 
