@@ -6,6 +6,7 @@ import { FooterPage } from "./pages/FooterPage";
 import SignUp from "./pages/SignUp";
 import { SignIn } from "./pages/SignIn";
 import Food from "./pages/Food";
+import NewFood from "./pages/NewFood";
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/food" element={<Food />} />
+          <Route path="/newfood" element={<NewFood />} />
         </Routes>
         <FooterPage />
       </BrowserRouter>

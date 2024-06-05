@@ -19,17 +19,23 @@ export default function Profile() {
         </span>
       </div>
       <div className="flex flex-col gap-2 mt-3">
-        <Link to={"/signin"} className="flex items-center gap-2">
+        <Link
+          to={"/signin"}
+          className="flex items-center gap-2 hover:text-green-300"
+        >
           {" "}
           <HiLogin />
           Signin/Signup
         </Link>
-        <Link className="flex items-center gap-2">
+        <Link
+          to={"/newfood"}
+          className="flex items-center gap-2 hover:text-yellow-500"
+        >
           <FaBowlFood />
           Add Food
         </Link>
         <hr />
-        <Link className="flex items-center gap-2">
+        <Link className="flex items-center gap-2 hover:text-red-400">
           <HiLogout />
           Sign out
         </Link>
