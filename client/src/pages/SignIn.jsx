@@ -34,7 +34,6 @@ export function SignIn() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.log(errorData);
         throw new Error(errorData.message || "Invalid Credentials!");
       }
 

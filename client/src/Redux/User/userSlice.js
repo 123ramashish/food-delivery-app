@@ -9,7 +9,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    SignupSuccess: (state, action) => {
+    SignupSuccess: (state) => {
       state.error = null;
     },
     SignupFailure: (state, action) => {

@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 export default class userController {
   async userSignup(req, res, next) {
     try {
-      const { name, email, password, admin } = req.body;
+      const { admin, email, name, password } = req.body;
       const hashedPassword = await passwordHash.generate(String(password));
       const newUser = new User({
         name: name,
@@ -17,7 +17,8 @@ export default class userController {
       return res.status(200).send("Signup successful!");
     } catch (err) {
       console.log("Error:", err.message);
-      next(new CustomError(err.message, 500));
+      // next(new CustomError(err.message, 500));
+      return res.status(409).json(err.message);
     }
   }
   async userSignin(req, res, next) {
