@@ -25,7 +25,7 @@ export default class userController {
       const { email, password } = req.body;
       const user = await User.findOne({ email });
       if (!user) {
-        throw new CustomError("User not exist", 404);
+        return res.status(404).send("User not exist!");
       }
       const isPasswordValid = passwordHash.verify(
         String(password),
@@ -33,7 +33,7 @@ export default class userController {
       );
 
       if (!isPasswordValid) {
-        throw new CustomError("Invalid password", 401);
+        return res.status(401).send("Invalid Password!");
       }
 
       const token = jwt.sign(
@@ -41,7 +41,7 @@ export default class userController {
         process.env.JWT_KEY,
         { expiresIn: "7d" }
       );
-      return res.status(200).json({ user: user, token: token });
+      return res.status(200).json({ user: user });
     } catch (err) {
       console.log("Error:", err.message);
       next(new CustomError(err.message, 500));
