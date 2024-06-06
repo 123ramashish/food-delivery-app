@@ -1,9 +1,33 @@
 import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
 export function SignIn() {
+  const [userData, setUserData] = useState({ email: "", password: "" });
+
+  const handleChange = (e, id) => {
+    setUserData({ ...userData, [id]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/user/signin", {
+        mode: "cors",
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   return (
-    <Card className="max-w-sm  m-auto my-8 bg-red-200">
-      <form className="flex flex-col gap-4">
+    <Card className="max-w-sm m-auto my-8 bg-red-200">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div>
           <div className="mb-2 block">
             <Label htmlFor="email1" value="Your email" />
@@ -13,6 +37,7 @@ export function SignIn() {
             type="email"
             placeholder="name@flowbite.com"
             required
+            onChange={(e) => handleChange(e, "email")}
           />
         </div>
         <div>
@@ -24,6 +49,7 @@ export function SignIn() {
             type="password"
             placeholder="*********"
             required
+            onChange={(e) => handleChange(e, "password")}
           />
         </div>
         <div className="flex items-center gap-2">
@@ -34,9 +60,8 @@ export function SignIn() {
           Submit
         </Button>
         <p className="text-xs font-thin">
-          Don't have accound?
-          <Link to={"/signup"} className="text-blue-600 underline">
-            {" "}
+          Don't have an account?
+          <Link to="/signup" className="text-blue-600 underline">
             Signup
           </Link>
         </p>
