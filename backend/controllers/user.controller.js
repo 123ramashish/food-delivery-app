@@ -48,4 +48,18 @@ export default class userController {
       next(new CustomError(err.message, 500));
     }
   }
+
+  async userSignout(req, res, next) {
+    try {
+      req.session.destroy((err) => {
+        if (err) {
+          throw new Error("Failed to sign out");
+        }
+        res.status(200).json({ message: "Signout successful" });
+      });
+    } catch (err) {
+      console.log(err.message);
+      return res.status(500).json(err.message);
+    }
+  }
 }

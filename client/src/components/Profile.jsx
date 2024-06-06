@@ -35,7 +35,10 @@ export default function Profile() {
           Add Food
         </Link>
         <hr />
-        <Link className="flex items-center gap-2 hover:text-red-400">
+        <Link
+          to={"/signout"}
+          className="flex items-center gap-2 hover:text-red-400"
+        >
           <HiLogout />
           Sign out
         </Link>

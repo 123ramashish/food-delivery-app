@@ -23,6 +23,13 @@ export const userSlice = createSlice({
     SigninFailure: (state, action) => {
       state.error = action.payload;
     },
+    SignOutSuccess: (state) => {
+      state.error = null;
+      state.currentUser = null;
+    },
+    SignOutFailure: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
