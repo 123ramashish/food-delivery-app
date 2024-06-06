@@ -33,7 +33,13 @@ export const userSlice = createSlice({
   },
 });
 
-export const { SignupSuccess, SignupFailure, SigninSuccess, SigninFailure } =
-  userSlice.actions;
+export const {
+  SignupSuccess,
+  SignupFailure,
+  SigninSuccess,
+  SigninFailure,
+  SignOutSuccess,
+  SignOutFailure,
+} = userSlice.actions;
 
 export default userSlice.reducer;

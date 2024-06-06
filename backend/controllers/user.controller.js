@@ -42,7 +42,13 @@ export default class userController {
         process.env.JWT_KEY,
         { expiresIn: "7d" }
       );
-      return res.status(200).json({ user: user });
+      const option = {
+        maxAge: 60 * 60 * 24 * 7 * 7,
+        httpOnly: true,
+        secured: true,
+      };
+      const { password: pass, ...rest } = user._doc;
+      return res.status(200).cookie("SessionID", token, option).json(rest);
     } catch (err) {
       console.log("Error:", err.message);
       next(new CustomError(err.message, 500));
@@ -51,12 +57,10 @@ export default class userController {
 
   async userSignout(req, res, next) {
     try {
-      req.session.destroy((err) => {
-        if (err) {
-          throw new Error("Failed to sign out");
-        }
-        res.status(200).json({ message: "Signout successful" });
-      });
+      res
+        .clearCookie("SessionID")
+        .status(200)
+        .json({ message: "Signout successful" });
     } catch (err) {
       console.log(err.message);
       return res.status(500).json(err.message);

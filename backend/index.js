@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import userRouter from "./routers/user.router.js";
 import { CustomError } from "./middlewares/custom.error.js";
 import cors from "cors";
-
+import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
 // Applying Cors
@@ -13,6 +13,7 @@ const app = express();
 
 // middleware
 app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
