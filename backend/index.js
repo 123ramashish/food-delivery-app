@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import userRouter from "./routers/user.router.js";
+import foodRouter from "./routers/food.router.js";
 import { CustomError } from "./middlewares/custom.error.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -19,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json()); // PARSER JSON
 app.use("/api/user", userRouter);
+app.use("/api/food", foodRouter);
 
 // handle error for api
 app.use((req, res, next) => {

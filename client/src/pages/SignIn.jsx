@@ -38,6 +38,7 @@ export function SignIn() {
       }
 
       const data = await response.json();
+
       dispatch(SigninSuccess(data.user));
       navigate("/");
     } catch (err) {
