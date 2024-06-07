@@ -48,7 +48,7 @@ export default class userController {
         secured: true,
       };
       const { password: pass, ...rest } = user._doc;
-      return res.status(200).cookie("SessionID", token, option).json(rest);
+      return res.status(200).cookie("SessionID", token, option).json({ rest });
     } catch (err) {
       console.log("Error:", err.message);
       next(new CustomError(err.message, 500));
