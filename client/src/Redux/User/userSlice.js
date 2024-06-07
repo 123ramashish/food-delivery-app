@@ -30,6 +30,12 @@ export const userSlice = createSlice({
     SignOutFailure: (state, action) => {
       state.error = action.payload;
     },
+    ImageSuccess: (state) => {
+      state.error = null;
+    },
+    ImageFailure: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
@@ -40,6 +46,8 @@ export const {
   SigninFailure,
   SignOutSuccess,
   SignOutFailure,
+  ImageSuccess,
+  ImageFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;
