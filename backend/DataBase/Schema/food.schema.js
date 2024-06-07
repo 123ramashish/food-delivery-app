@@ -13,6 +13,7 @@ const FoodSchema = new mongoose.Schema(
     imageUrl: {
       type: String,
       required: true,
+      unique: true,
     },
   },
   { timestamps: true }
