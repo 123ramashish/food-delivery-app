@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FileInput, Button, Label, TextInput, Toast } from "flowbite-react";
-import { HiX } from "react-icons/hi";
+import { HiCheck, HiX } from "react-icons/hi";
 import { storage } from "../../firebase.js";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ export default function NewFood() {
   const notify = () => toast("Item added Successfully!");
   const [data, setData] = useState({ image: null, name: "", price: 0 });
   const [imageUrl, setImageUrl] = useState(null);
+  const [add, setAdd] = useState(false);
   const { error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -78,9 +79,10 @@ export default function NewFood() {
         return;
       }
 
-      const responseData = await response.json();
-      dispatch(ImageSuccess(responseData));
+      dispatch(ImageSuccess());
       setData({ name: "", price: 0, image: null });
+      setImageUrl("");
+      setAdd(true);
       notify();
     } catch (error) {
       dispatch(ImageFailure("Failed to upload food data."));
@@ -103,7 +105,18 @@ export default function NewFood() {
               <Toast.Toggle />
             </Toast>
           )}
-          <ToastContainer />
+          {add && (
+            <Toast>
+              <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+                <HiCheck className="h-5 w-5" />
+              </div>
+              <div className="ml-3 text-sm font-normal">
+                Item added successfully.
+              </div>
+              <Toast.Toggle />
+            </Toast>
+          )}
+
           <div>
             <Label htmlFor="image" value="Upload Picture" />
           </div>

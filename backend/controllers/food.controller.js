@@ -26,4 +26,33 @@ export default class FoodController {
       );
     }
   }
+
+  async getFood(req, res, next) {
+    try {
+      const { foodName } = req.params;
+      console.log(foodName);
+      const food = await Food.find();
+      console.log(food);
+      if (food.length === 0) {
+        return res.status(404).send("Item not exist!");
+      }
+
+      if (foodName === "all") {
+        return res.status(200).json(food);
+      } else {
+        const filteredFood = food.filter((item) =>
+          item.name.includes(foodName)
+        );
+
+        if (filteredFood.length === 0) {
+          return res.status(204).send("Item not exist!");
+        }
+
+        return res.status(200).send(filteredFood);
+      }
+    } catch (err) {
+      console.log(err.message);
+      next(new CustomError("Something is wrong to get food!", 500));
+    }
+  }
 }
