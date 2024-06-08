@@ -30,11 +30,9 @@ export default class FoodController {
   async getFood(req, res, next) {
     try {
       const { foodName } = req.params;
-      console.log(foodName);
       const food = await Food.find();
-      console.log(food);
       if (food.length === 0) {
-        return res.status(404).send("Item not exist!");
+        return res.status(204).send("Item not exist!");
       }
 
       if (foodName === "all") {
