@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import userRouter from "./routers/user.router.js";
 import foodRouter from "./routers/food.router.js";
+import cartRouter from "./routers/cart.router.js";
 import { CustomError } from "./middlewares/custom.error.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use(express.json()); // PARSER JSON
 app.use("/api/user", userRouter);
 app.use("/api/food", foodRouter);
+app.use("/api/cart", cartRouter);
 
 // handle error for api
 app.use((req, res, next) => {
