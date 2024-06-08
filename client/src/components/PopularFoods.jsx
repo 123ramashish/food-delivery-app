@@ -34,7 +34,6 @@ export default function PopularFoods() {
 
   const handleClick = (id) => {
     setSelectedFood(id);
-    console.log(food);
   };
 
   return (
