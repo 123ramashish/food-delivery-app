@@ -1,21 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Card } from "flowbite-react";
 import humburger from "../assets/images/hamburger.png";
 import pizzaimage from "../assets/images/pizza.png";
 import breadimage from "../assets/images/bread.png";
-import product21 from "../assets/images/product_2.1.jpg";
-import product31 from "../assets/images/product_3.1.jpg";
-import product41 from "../assets/images/product_4.1.jpg";
+import { FoodSuccess, FoodFailure } from "../Redux/Food/foodSlice.js";
 
 export default function PopularFoods() {
   const [selectedFood, setSelectedFood] = useState("all");
+  const dispatch = useDispatch();
+  const { food } = useSelector((state) => state.food);
+
+  useEffect(() => {
+    const getFood = async () => {
+      try {
+        const response = await fetch(`/api/food/getfood/${selectedFood}`);
+
+        if (!response.ok) {
+          const failureData = await response.json();
+          dispatch(FoodFailure(failureData));
+          return;
+        }
+
+        const data = await response.json();
+        dispatch(FoodSuccess(data));
+      } catch (error) {
+        dispatch(FoodFailure(error.message));
+      }
+    };
+
+    getFood();
+  }, [selectedFood, dispatch]);
 
   const handleClick = (id) => {
-    if (id === "all") {
-      setSelectedFood("all");
-    } else {
-      setSelectedFood(id);
-    }
+    setSelectedFood(id);
+    console.log(food);
   };
 
   return (
@@ -35,7 +54,7 @@ export default function PopularFoods() {
           <Button
             id="burger"
             className="flex items-center bg-red-600 active:bg-white"
-            onClick={() => handleClick("burger")}
+            onClick={() => handleClick("Burger")}
           >
             <img src={humburger} alt="Burger" className="h-6 mr-2" />
             Burger
@@ -43,15 +62,15 @@ export default function PopularFoods() {
           <Button
             id="pizza"
             className="flex items-center bg-red-600"
-            onClick={() => handleClick("pizza")}
+            onClick={() => handleClick("Pizza")}
           >
             <img src={pizzaimage} alt="Pizza" className="h-6 mr-2" />
             Pizza
           </Button>
           <Button
-            id="bread"
+            id="Bread"
             className="flex items-center bg-red-600"
-            onClick={() => handleClick("bread")}
+            onClick={() => handleClick("Bread")}
           >
             <img src={breadimage} alt="Bread" className="h-6 mr-2" />
             Bread
@@ -59,48 +78,21 @@ export default function PopularFoods() {
         </div>
       </div>
       <div className="flex flex-wrap w-full px-20 py-12 gap-6 justify-center relative">
-        {(selectedFood === "all" || selectedFood === "burger") && (
-          <Card className="max-w-sm flex flex-col w-52">
-            <div className="text-center flex flex-col items-center">
-              <img src={product21} alt="Vegetarian Pizza" className="h-20" />
-              <p className="dark:text-white">Vegetarian Pizza</p>
-            </div>
-            <div className="flex justify-between items-center my-3">
-              <p className="text-red-500 text-sm font-sans">$115</p>
-              <Button className="h-8 w-26 bg-red-500 items-center">
-                Add to cart
-              </Button>
-            </div>
-          </Card>
-        )}
-        {(selectedFood === "all" || selectedFood === "bread") && (
-          <Card className="max-w-sm flex flex-col w-52">
-            <div className="text-center flex flex-col items-center">
-              <img src={product31} alt="Maxican Green Wave" className="h-20" />
-              <p className="dark:text-white">Maxican Green Wave</p>
-            </div>
-            <div className="flex justify-between items-center my-3">
-              <p className="text-red-500 text-sm font-sans">$110</p>
-              <Button className="h-8 w-26 bg-red-500 items-center">
-                Add to cart
-              </Button>
-            </div>
-          </Card>
-        )}
-        {(selectedFood === "all" || selectedFood === "pizza") && (
-          <Card className="max-w-sm flex flex-col w-52">
-            <div className="text-center flex flex-col items-center">
-              <img src={product41} alt="Seafood Pizza" className="h-20" />
-              <p className="dark:text-white">Seafood Pizza</p>
-            </div>
-            <div className="flex justify-between items-center my-3">
-              <p className="text-red-500 text-sm font-sans">$115</p>
-              <Button className="h-8 w-26 bg-red-500 items-center">
-                Add to cart
-              </Button>
-            </div>
-          </Card>
-        )}
+        {food &&
+          food.map((item) => (
+            <Card className="max-w-sm flex flex-col w-52" key={item._id}>
+              <div className="text-center flex flex-col items-center">
+                <img src={item.imageUrl} alt="" className="h-20" />
+                <p className="dark:text-white">{item.name}</p>
+              </div>
+              <div className="flex justify-between items-center my-3">
+                <p className="text-red-500 text-sm font-sans">${item.price}</p>
+                <Button className="h-8 w-26 bg-red-500 items-center">
+                  Add to cart
+                </Button>
+              </div>
+            </Card>
+          ))}
       </div>
     </div>
   );
