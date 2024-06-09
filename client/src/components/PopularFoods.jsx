@@ -5,12 +5,13 @@ import humburger from "../assets/images/hamburger.png";
 import pizzaimage from "../assets/images/pizza.png";
 import breadimage from "../assets/images/bread.png";
 import { FoodSuccess, FoodFailure } from "../Redux/Food/foodSlice.js";
+import { CartSuccess } from "../Redux/Cart/cartSlice.js";
 
 export default function PopularFoods() {
   const [selectedFood, setSelectedFood] = useState("all");
   const dispatch = useDispatch();
   const { food } = useSelector((state) => state.food);
-
+  const { cart } = useSelector((state) => state.cart);
   useEffect(() => {
     const getFood = async () => {
       try {
@@ -34,6 +35,10 @@ export default function PopularFoods() {
 
   const handleClick = (id) => {
     setSelectedFood(id);
+  };
+  const handleAddCart = async (id) => {
+    dispatch(CartSuccess(id));
+    console.log(cart);
   };
 
   return (
@@ -86,7 +91,10 @@ export default function PopularFoods() {
               </div>
               <div className="flex justify-between items-center my-3">
                 <p className="text-red-500 text-sm font-sans">${item.price}</p>
-                <Button className="h-8 w-26 bg-red-500 items-center">
+                <Button
+                  className="h-8 w-26 bg-red-500 items-center"
+                  onClick={() => handleAddCart(item._id)}
+                >
                   Add to cart
                 </Button>
               </div>

@@ -4,7 +4,7 @@ import { Button, Card, Label, Select, Pagination } from "flowbite-react";
 import { IoIosSearch } from "react-icons/io";
 import burgerbackground from "../assets/images/burger-background.jpg";
 import { FoodSuccess, FoodFailure } from "../Redux/Food/foodSlice.js";
-
+import { CartSuccess, CartFailure } from "../Redux/Cart/cartSlice.js";
 export default function Food() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedFood, setSelectedFood] = useState("all");
@@ -34,6 +34,11 @@ export default function Food() {
 
   const handleSearch = (e) => {
     setSelectedFood(e.target.value);
+  };
+
+  const handleClick = (id) => {
+    e.preventDefault();
+    dispatch(CartSuccess(id));
   };
 
   return (
@@ -83,7 +88,10 @@ export default function Food() {
                   <p className="text-red-500 text-sm font-sans">
                     ${item.price}
                   </p>
-                  <Button className="h-8 w-26 bg-red-500 items-center">
+                  <Button
+                    className="h-8 w-26 bg-red-500 items-center"
+                    onClick={() => handleClick(item._id)}
+                  >
                     Add to cart
                   </Button>
                 </div>

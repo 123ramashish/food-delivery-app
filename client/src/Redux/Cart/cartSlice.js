@@ -5,7 +5,7 @@ const initialState = {
   error: null,
 };
 
-export const foodSlice = createSlice({
+export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
