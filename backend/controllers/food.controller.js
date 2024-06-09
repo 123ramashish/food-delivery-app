@@ -3,6 +3,9 @@ import { CustomError } from "../middlewares/custom.error.js";
 
 export default class FoodController {
   async addFood(req, res, next) {
+    if (!req.admin) {
+      return res.status(401).send("Only admin can add Food!");
+    }
     const { name, price, imageUrl } = req.body;
 
     if (!name || !imageUrl || !price) {

@@ -3,6 +3,9 @@ import Food from "../DataBase/Schema/food.schema.js";
 export default class CartController {
   async addToCart(req, res, next) {
     try {
+      if (!req.id) {
+        return res.status(401).send("Loginin Required!");
+      }
       const { productId } = req.params;
       const product = await Food.findById(productId);
 
