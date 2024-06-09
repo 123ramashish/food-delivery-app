@@ -8,8 +8,16 @@ import {
 import { Link } from "react-router-dom";
 import { FaRegUser, FaShoppingCart } from "react-icons/fa";
 import Profile from "../components/Profile";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { CalculateTotalPrice } from "../Redux/Cart/cartSlice.js";
 export default function Header() {
+  const { notification } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const content = <Profile />;
+  // useEffect(() => {
+  //   dispatch(CalculateTotalPrice());
+  // }, []);
   return (
     <>
       <Navbar fluid rounded className="shadow-sm sticky top-0 w-full z-50">
@@ -30,6 +38,9 @@ export default function Header() {
 
         <div className=" inline-flex gap-4 text-sm items-center ml-2 md:order-2 ">
           <Link to={"/cart"}>
+            <h2 className="bg-red-500 text-white rounded-full text-center my-[-6px] ml-1 w-4">
+              {notification}
+            </h2>
             <FaShoppingCart className=" text-2xl text-gray-500" />
           </Link>
           <Popover content={content} placement="bottom" trigger="hover">

@@ -4,6 +4,7 @@ const initialState = {
   cart: [],
   error: null,
   totalPrice: 0,
+  notification: 0,
 };
 
 export const cartSlice = createSlice({
@@ -48,6 +49,9 @@ export const cartSlice = createSlice({
         (total, item) => total + item.quantity * item.price,
         0
       );
+      state.cart.map((item) => {
+        state.notification += item.quantity;
+      });
     },
   },
 });
