@@ -36,9 +36,8 @@ export default function Food() {
     setSelectedFood(e.target.value);
   };
 
-  const handleClick = (id) => {
-    e.preventDefault();
-    dispatch(CartSuccess(id));
+  const handleClick = async (id, name, price, imageUrl) => {
+    dispatch(CartSuccess({ id, name, price, imageUrl }));
   };
 
   return (
@@ -90,7 +89,14 @@ export default function Food() {
                   </p>
                   <Button
                     className="h-8 w-26 bg-red-500 items-center"
-                    onClick={() => handleClick(item._id)}
+                    onClick={() =>
+                      handleClick(
+                        item._id,
+                        item.name,
+                        item.price,
+                        item.imageUrl
+                      )
+                    }
                   >
                     Add to cart
                   </Button>

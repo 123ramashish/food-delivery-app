@@ -10,8 +10,16 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     CartSuccess: (state, action) => {
-      state.cart.push(action.payload);
-      state.error = null;
+      const { id, name, price, imageUrl } = action.payload;
+      const foundIndex = state.cart.findIndex((item) => item.id === id);
+
+      if (foundIndex === -1) {
+        state.cart.push({ id, name, price, imageUrl, quantity: 1 });
+        state.error = null;
+      } else {
+        state.cart[foundIndex].quantity += 1;
+        state.error = null;
+      }
     },
     CartFailure: (state, action) => {
       state.error = action.payload;

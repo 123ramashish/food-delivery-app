@@ -36,8 +36,9 @@ export default function PopularFoods() {
   const handleClick = (id) => {
     setSelectedFood(id);
   };
-  const handleAddCart = async (id) => {
-    dispatch(CartSuccess(id));
+  const handleAddCart = async (id, name, price, imageUrl) => {
+    dispatch(CartSuccess({ id, name, price, imageUrl }));
+
     console.log(cart);
   };
 
@@ -93,7 +94,14 @@ export default function PopularFoods() {
                 <p className="text-red-500 text-sm font-sans">${item.price}</p>
                 <Button
                   className="h-8 w-26 bg-red-500 items-center"
-                  onClick={() => handleAddCart(item._id)}
+                  onClick={() =>
+                    handleAddCart(
+                      item._id,
+                      item.name,
+                      item.price,
+                      item.imageUrl
+                    )
+                  }
                 >
                   Add to cart
                 </Button>
