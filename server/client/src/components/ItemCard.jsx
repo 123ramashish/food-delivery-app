@@ -36,7 +36,7 @@ export default function ItemCard() {
         <div className="mx-12 flex  justify-start ">
           <div className="flex items-center justify-around gap-8 ">
             <img src={category4} alt="" />
-            <p className="text-lg">Row Meat</p>
+            <p className="text-lg">Raw Meat</p>
           </div>
         </div>
       </Card>

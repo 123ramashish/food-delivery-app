@@ -21,13 +21,7 @@ export default function Testimonial() {
         </p>
 
         <div className="h-36">
-          <Carousel
-            className="bg-white"
-            pauseOnHover
-            leftControl
-            rightControl
-            slideInterval={1000}
-          >
+          <Carousel pauseOnHover slideInterval={1000}>
             <div className="flex flex-col  h-full items-center justify-center  dark:bg-dark dark:text-white">
               <div className="flex flex-col gap-4">
                 <p className="text-xs font-thin">

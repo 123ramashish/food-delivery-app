@@ -9,6 +9,7 @@ const initialState = {
 
 export const cartSlice = createSlice({
   name: "cart",
+
   initialState,
   reducers: {
     CartSuccess: (state, action) => {
@@ -24,7 +25,7 @@ export const cartSlice = createSlice({
       }
     },
     CartFailure: (state, action) => {
-      state.error = action.payload;
+      //   state.error = action.payload;
     },
     IncreaseQuantity: (state, action) => {
       const { id } = action.payload;

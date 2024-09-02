@@ -7,8 +7,12 @@ import foodRouter from "./routers/food.router.js";
 import cartRouter from "./routers/cart.router.js";
 import { CustomError } from "./middlewares/custom.error.js";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 // Applying Cors
 // app.use(cors());
@@ -18,6 +22,10 @@ app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/client/dist/index.html"))
+);
 app.use(bodyParser.json());
 app.use(express.json()); // PARSER JSON
 app.use("/api/user", userRouter);

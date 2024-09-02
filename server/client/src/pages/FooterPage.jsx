@@ -47,12 +47,10 @@ export function FooterPage() {
             <Footer.Title title="Contact" className="dark:text-white" />
             <Footer.LinkGroup col className="dark:text-white">
               <Footer.Link href="#">
-                Location: Greater Noida <br /> Uttar Pradesh
+                Location: Patia Bhubaneshwar <br /> Odisha
               </Footer.Link>
               <Footer.Link>Phone: 7542918414</Footer.Link>
-              <Footer.Link href="#">
-                Email: ramashishram945@gmail.com
-              </Footer.Link>
+              <Footer.Link href="#">Email: tastytreat@gmail.com</Footer.Link>
             </Footer.LinkGroup>
           </div>
           <div>
@@ -66,7 +64,7 @@ export function FooterPage() {
         <div className="flex flex-wrap  py-6 justify-center  gap-24">
           <Footer.Copyright
             href="#"
-            by="Ram Ashish"
+            by="RnPsoft PVT LTD"
             year={new Date().getFullYear()}
           />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
@@ -86,7 +84,7 @@ export function FooterPage() {
               className="hover:text-[#1da1f2]"
             />
             <Footer.Icon
-              href="https://github.com/123ramashish"
+              // href="https://github.com/123ramashish"
               icon={BsGithub}
               className="hover:text-black"
             />
